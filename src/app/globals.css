@@ -1,27 +1,31 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.table-container {
+  display: grid;
+  place-items: center;
+  scale: 95%;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  /* Define grid layout */
+  grid-template-areas:
+    "header"
+    "content";
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.header-title {
+  margin-bottom: 10px; /* Adjust spacing as needed */
+  grid-area: header; /* Assign this element to the 'header' area */
+  margin-bottom: 10px;
+  text-align: center; /* Center-align text */
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.add {
+  justify-self: end;
+}
+
+.table-content {
+  grid-area: content; /* Assign this element to the 'content' area */
+  width: max-content; /* or min-content; Adjust as needed */
+  /* Other styles for your table */
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border: 1px solid rgb(206, 201, 201);
 }
