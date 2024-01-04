@@ -2,12 +2,35 @@
 
 import { Table, Button, TableColumnsType, Space } from "antd";
 import { Product } from "../interfaces";
+import { useState } from "react";
+import EditModal from "../modals/EditModal";
 
 interface Props {
   products: Product[];
 }
 
-const TableComponent: React.FC<Props> = ({ products }) => {
+const TableComponent: React.FC<Props> = ({ products: initialProducts }) => {
+  const [products, setProducts] = useState<Product[]>(initialProducts);
+  const [editModalVisible, setEditModalVisible] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+
+  const handleEdit = (record: Product) => {
+    setSelectedProduct(record);
+    setEditModalVisible(true);
+  };
+
+  const handleEditModalSave = (updatedProduct: Product) => {
+    const updatedProducts = products.map((product) =>
+      product.id === updatedProduct.id ? { ...product, ...updatedProduct } : product
+    );
+    setProducts(updatedProducts);
+  };
+
+  const handleCancelEditModal = () => {
+    setEditModalVisible(false);
+    setSelectedProduct(null);
+  };
+
   const columns = [
     {
       title: "ID",
@@ -48,16 +71,9 @@ const TableComponent: React.FC<Props> = ({ products }) => {
     },
   ];
 
-  const handleEdit = (record: Product) => {
-    // Implement edit functionality here using the record object
-    console.log("Edit product:", record);
-    // You can open a modal or navigate to an edit page for this product
-  };
-
-  const handleDelete = (productId: number) => {
-    // Implement delete functionality here using the productId
-    console.log("Delete product with ID:", productId);
-    // You can perform deletion logic and update the table accordingly
+  const handleDelete = (recordId: number) => {
+    const updatedProducts = products.filter((product) => product.id !== recordId);
+    setProducts(updatedProducts);
   };
 
   return (
@@ -75,6 +91,12 @@ const TableComponent: React.FC<Props> = ({ products }) => {
           rowKey="id"
           size="small" // To scale down the size of the table
         />
+        <EditModal
+        visible={editModalVisible}
+        onCancel={handleCancelEditModal}
+        onSave={handleEditModalSave}
+        initialProduct={selectedProduct} // Pass an empty object if no selectedProduct
+      />
       </div>
     </div>
   );
