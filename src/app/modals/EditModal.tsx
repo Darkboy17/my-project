@@ -41,7 +41,7 @@ const EditModal: React.FC<EditModalProps> = ({ visible, onCancel, onSave, initia
 
   return (
     <Modal
-      visible={visible}
+      open={visible}
       title="Edit Product"
       onCancel={onCancel}
       footer={[
@@ -57,13 +57,17 @@ const EditModal: React.FC<EditModalProps> = ({ visible, onCancel, onSave, initia
         <Form.Item name="id" label="ID">
           <Input disabled />
         </Form.Item>
-        <Form.Item name="name" label="Name">
+        <Form.Item name="name" label="Name"
+        rules={[{ required: true, message: 'Please enter the name!' }]}
+        >
           <Input />
         </Form.Item>
-        <Form.Item name="price" label="Price">
+        <Form.Item name="price" label="Price"
+        rules={[{ required: true, message: 'Please enter the Price!' }]}>
           <Input />
         </Form.Item>
-        <Form.Item name="category" label="Category">
+        <Form.Item name="category" label="Category"
+        rules={[{ required: true, message: 'Please enter the Category!' }]}>
           <Input />
         </Form.Item>
         {/* Add other Form.Item fields as needed */}

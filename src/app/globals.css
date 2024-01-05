@@ -10,7 +10,7 @@
 }
 
 .header-title {
-  margin-bottom: 10px; /* Adjust spacing as needed */
+  margin-bottom: 1px; /* Adjust spacing as needed */
   grid-area: header; /* Assign this element to the 'header' area */
   margin-bottom: 10px;
   text-align: center; /* Center-align text */
@@ -26,6 +26,31 @@
   /* Other styles for your table */
   padding: 10px;
   border-radius: 10px;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  box-shadow: rgba(149, 157, 165, 0.2) 1px 8px 24px;
   border: 1px solid rgb(206, 201, 201);
+}
+
+
+.dropdown-filter {
+    float: right;
+}
+
+.search {
+  margin-bottom: 10px;
+}
+
+.fade-out {
+  transition: opacity 1s;
+  opacity: 0;
+}
+
+.shift-up {
+  transition: transform 1s ease-out;
+  transform: translateY(-100%);
+}
+
+.delete-transition {
+  transition: all 0.4s ease;
+  opacity: 0;
+  transform: translateX(100%);
 }
