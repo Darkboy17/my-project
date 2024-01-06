@@ -1,4 +1,3 @@
-// EditModal.tsx
 import React, { useState, useEffect } from 'react';
 import { Modal, Form, Input, Button } from 'antd';
 import { Product } from '../interfaces';
